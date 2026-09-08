@@ -1,0 +1,342 @@
+@mixin overviewFontStyle($fontSize, $fontWeight) {
+	color: #4a5568;
+	font-size: $fontSize;
+	font-weight: $fontWeight;
+}
+
+.overviewTitle {
+	@include overviewFontStyle(17px, 600);
+}
+
+.overviewSubTitle {
+	@include overviewFontStyle(14px, 600);
+}
+
+.deviceNum {
+	margin-top: -56px;
+	color: #718096;
+	font-size: 14px;
+	font-weight: 600;
+	span {
+		font-size: 30px;
+	}
+}
+
+.sensorElement {
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	color: #4a5568 !important;
+	vertical-align: middle !important;
+}
+
+.deviceBadge {
+	background: #6aade0;
+	width: 37px;
+}
+
+.facilityTitle {
+	@include overviewFontStyle(17px, 550);
+}
+
+.facilitLegend {
+	@include overviewFontStyle(13px, 550);
+}
+
+.facilityAlign {
+	display: flex;
+	justify-content: space-around;
+	> div {
+		width: 49px;
+	}
+}
+
+.deviceList {
+	color: #4a5568 !important;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+@media screen and (min-width: 992px) {
+	._5wJKyLX2Iw-_ZFKMHN3dB {
+		width: 240px !important;
+	}
+	.overviewFirstbox {
+		height: 140px !important;
+	}
+	.overviewSecondbox {
+		height: 280px !important;
+	}
+	.overviewThirdbox {
+		height: 85px !important;
+	}
+	.deviceNum {
+		margin-bottom: 20px;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	/* 테블릿 CSS*/
+	._5wJKyLX2Iw-_ZFKMHN3dB {
+		width: 100% !important;
+		height: 100% !important;
+	}
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 82vw;
+		height: 75vw;
+		margin: -216px 0 0 -183px;
+	}
+	.deviceNum {
+		margin-top: -80px;
+		font-size: 21px;
+		span {
+			font-size: 62px;
+		}
+	}
+}
+
+@media screen and (max-width: 950px) {
+	/* 테블릿 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 76vw;
+		height: 65vw;
+		margin: -162px 0 0 -149px;
+	}
+	.deviceNum {
+		margin-top: -80px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	/* 테블릿 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 77vw;
+		height: 60vw;
+		margin: -127px 0 0 -147px;
+	}
+	.deviceNum {
+		margin-top: -71px;
+	}
+}
+
+@media screen and (max-width: 860px) {
+	/* 테블릿 CSS */
+	._5wJKyLX2Iw-_ZFKMHN3dB {
+		height: 100% !important;
+	}
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 67vw;
+		height: 60vw;
+		margin: -112px 0 0 -98px;
+	}
+	.deviceNum {
+		margin-top: -61px;
+		span {
+			font-size: 58px;
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	/* 테블릿 CSS */
+	._5wJKyLX2Iw-_ZFKMHN3dB {
+		height: 100% !important;
+	}
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 160vw;
+		height: 160vw;
+		margin: -490px 0 0 -273px;
+	}
+	.deviceNum {
+		margin-top: -224px;
+		font-size: 20px;
+		span {
+			font-size: 55px;
+		}
+	}
+}
+
+@media screen and (max-width: 745px) {
+	/* 테블릿 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 150vw;
+		height: 145vw;
+		margin: -409px 0 0 -225px;
+	}
+	.deviceNum {
+		margin-top: -205px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	/* 모바일 CSS */
+	._5wJKyLX2Iw-_ZFKMHN3dB {
+		height: 100% !important;
+	}
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 145vw;
+		height: 135vw;
+		margin: -365px 0 0 -196px;
+	}
+	.deviceNum {
+		margin-top: -207px;
+	}
+}
+
+@media screen and (max-width: 646px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 133vw;
+		height: 125vw;
+		margin: -300px 0 0 -149px;
+	}
+	.deviceNum {
+		margin-top: -183px;
+		font-size: 19px;
+		span {
+			font-size: 50px;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 127vw;
+		height: 110vw;
+		margin: -230px 0 0 -127px;
+	}
+	.deviceNum {
+		margin-top: -165px;
+	}
+}
+
+@media screen and (max-width: 556px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		margin: -218px 0 0 -119px;
+	}
+	.deviceNum {
+		margin-top: -152px;
+	}
+}
+
+@media screen and (max-width: 512px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 120vw;
+		height: 100vw;
+		margin: -160px 0 0px -98px;
+	}
+	.deviceNum {
+		margin-top: -117px;
+		span {
+			font-size: 45px;
+		}
+	}
+}
+
+@media screen and (max-width: 469px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 111vw;
+		height: 100vw;
+		margin: -135px 0 0 -71px;
+	}
+	.deviceNum {
+		margin-top: -95px;
+	}
+}
+
+@media screen and (max-width: 438px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 103vw;
+		height: 90vw;
+		margin: -98px 0 0 -52px;
+	}
+	.deviceNum {
+		margin-top: -80px;
+		span {
+			font-size: 40px;
+		}
+	}
+}
+
+@media screen and (max-width: 405px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 98vw;
+		height: 90vw;
+		margin: -98px 0 0 -42px;
+	}
+}
+
+@media screen and (max-width: 390px) {
+	/* 모바일 CSS */
+
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 85vw;
+		height: 80vw;
+		margin: -85px 0 0 -20px;
+	}
+	.deviceNum {
+		margin-top: -80px;
+		font-size: 17px;
+		span {
+			font-size: 35px;
+		}
+	}
+}
+
+@media screen and (max-width: 345px) {
+	/* 모바일 CSS */
+
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 70vw;
+		height: 70vw;
+		margin: -67px 0 0 0px;
+	}
+}
+
+@media screen and (max-width: 315px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 60vw;
+		height: 60vw;
+		margin: -45px 0 0 0px;
+	}
+	.deviceNum {
+		margin-top: -65px;
+		font-size: 14px;
+
+		span {
+			font-size: 30px;
+		}
+	}
+}
+
+@media screen and (max-width: 296px) {
+	/* 모바일 CSS */
+	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+		width: 50vw;
+		height: 50vw;
+		margin: -25px 0 0 0px;
+	}
+	.deviceNum {
+		margin-top: -53px;
+		font-size: 14px;
+
+		span {
+			font-size: 27px;
+		}
+	}
+}
+
+// @media screen and (max-width: 280px) {
+// 	/* 모바일 CSS */
+// 	.AngleHalfGraph > .recharts-responsive-container > .recharts-wrapper > .recharts-surface {
+// 		width: 55vw;
+// 		height: 45vw;
+// 		margin: -20px 0 0 0px;
+// 	}
+// }

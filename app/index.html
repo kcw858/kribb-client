@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<% var config = htmlWebpackPlugin || SSRData %>
+<!--[if lt IE 7]> <html lang="en" class="ie6" <% if(config.files.manifest) { %> manifest="<%= config.files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="ie7" <% if(config.files.manifest) { %> manifest="<%= config.files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="ie8" <% if(config.files.manifest) { %> manifest="<%= config.files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="ie9" <% if(config.files.manifest) { %> manifest="<%= config.files.manifest %>"<% } %>> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="" <% if(config.files.manifest) { %>
+	manifest="<%= config.files.manifest %>"<% } %>>
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<title><%= config.options.title%></title>
+
+		<% if (config.files.favicon) { %>
+		<link rel="shortcut icon" href="<%= config.files.favicon%>" />
+		<% } %>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui" />
+
+		<% for (var css in config.files.css) { %>
+		<link href="<%= config.files.css[css] %>" rel="preload" as="style" />
+		<link href="<%= config.files.css[css] %>" rel="stylesheet" />
+		<% } %> <% if (config.options.chunks) { %> <%= config.options.chunks.css %> <% } %>
+
+		<!-- Loader Style -->
+		<style>
+			@keyframes spin {
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			.modal-content {
+				border: 1px solid #3c3c3c;
+			}
+
+			#weather::after {
+				font-weight: bold;
+				float: right;
+				color: rgba(204, 203, 203, 0.288);
+				content: "|";
+				margin-right: 20px;
+				padding-left: 20px;
+			}
+
+			/* 사이드 바 배경색 */
+			.sidebar,
+			.sidebar-submenu {
+				background-color: #ffffff !important;
+			}
+
+			._5wJKyLX2Iw-_ZFKMHN3dB {
+				border: 0;
+			}
+
+			h1,
+			.h1 {
+				font-size: 1.2rem !important;
+				font-weight: 600;
+				color: #4a5568 !important;
+			}
+
+			.sidebar-menu__entry__link,
+			.sidebar-submenu__entry__link,
+			.sidebar-menu__entry__link::after {
+				color: #a0aec0;
+			}
+
+			.sidebar-menu__entry__link:hover,
+			.sidebar-submenu__entry__link:hover,
+			.sidebar-menu__entry__link:hover.sidebar-menu__entry__link::after,
+			.sidebar-menu__entry.active:not(.open) > .sidebar-menu__entry__link,
+			.sidebar-menu__entry.active:not(.open) > .sidebar-menu__entry__link::after,
+			.sidebar-submenu__entry.active:not(.open) > .sidebar-submenu__entry__link,
+			.sidebar-submenu__entry.active:not(.open) > .sidebar-menu__entry__link::after {
+				color: #4a5568 !important;
+				transform: none !important;
+			}
+
+			.sidebar-menu__entry__link::before,
+			.sidebar-submenu__entry__link::before {
+				/* transform: none;
+					transition: none; */
+				display: none;
+			}
+
+			.col-form-label {
+				color: #718096 !important;
+			}
+
+			.dashboardText {
+				color: #718096 !important;
+			}
+
+			.page-item.active .page-link {
+				background-color: #edf2f7 !important;
+			}
+
+			.page-link:hover,
+			.page-link:active,
+			.page-link:focus {
+				background-color: #e2e8f0 !important;
+			}
+
+			.react-bootstrap-table th {
+				background-color: #edf2f7 !important;
+			}
+
+			.btn-primary {
+				background-color: #44a3ec !important;
+				border: 0 !important;
+			}
+
+			.btn-primary:hover,
+			.btn-primary:focus {
+				border: 0 !important;
+				background-color: #4194d9 !important;
+			}
+
+			.btn-primary:active {
+				background-color: #44a3ec !important;
+				border: 0 !important;
+			}
+
+			.btn-white-border {
+				background-color: #44a3ec;
+				border-right: 1px solid #fff !important;
+				border-left: 1px solid #fff !important;
+			}
+
+			.btn-white-border:hover,
+			.btn-white-border:active,
+			.btn-white-border:focus {
+				background-color: #4194d9;
+				border-right: 1px solid #fff !important;
+				border-left: 1px solid #fff !important;
+				box-sizing: border-box;
+			}
+
+			.btn-secondary {
+				background-color: #a0aec0;
+				border: 1px solid #fff;
+				border-top: 0;
+				border-bottom: 0;
+			}
+
+			.btn-secondary:hover {
+				background-color: #718096;
+				border: 1px solid #fff;
+				border-top: 0;
+				border-bottom: 0;
+			}
+
+			.btn-cancel,
+			.btn-outline-secondary {
+				background-color: #e2e8f0;
+				border: 0;
+				color: #4a5568;
+			}
+
+			.btn-cancel:hover,
+			.btn-cancel:active,
+			.btn-outline-secondary:hover,
+			.btn-outline-secondary:active {
+				background-color: #cbd5e0 !important;
+				border: 0;
+				color: #4a5568 !important;
+			}
+
+			.btn-cancel:focus,
+			.btn-outline-secondary:focus {
+				box-shadow: 0 0 0 0.2rem rgba(160, 174, 192, 0.6) !important;
+				background-color: #cbd5e0 !important;
+			}
+
+			.btn-cancel-white-border,
+			.btn-cancel-white-border:hover,
+			.btn-cancel-white-border:active,
+			.btn-cancel-white-border:focus {
+				border-left: 1px solid #fff;
+			}
+			.btn-no-connect {
+				background-color: #4a5568;
+				color: #fff;
+			}
+
+			.btn-no-connect:hover {
+				background-color: #718096;
+				color: #fff;
+			}
+
+			.btn-connect-white-border {
+				border-right: 1px solid white;
+			}
+
+			.btn-connect-white-border:hover {
+				border-right: 1px solid white;
+			}
+
+			.btn-save {
+				background-color: #a0aec0;
+				border: 0;
+				color: #fff;
+			}
+			.btn-save:hover {
+				background-color: #718096;
+				border: 0;
+				color: #fff;
+			}
+			.btn-save:focus {
+				box-shadow: 0 0 0 0.2rem rgba(160, 174, 192, 0.6) !important;
+				background-color: #718096 !important;
+			}
+
+			.back-btn {
+				width: 30px;
+				height: 30px;
+				color: #718096;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.custom-control-input:checked ~ .custom-control-label::before {
+				/* 토글버튼 활성화 됐을때 */
+				border-color: #44a3ec;
+				background-color: #44a3ec;
+			}
+
+			.custom-switch .custom-control-label::after {
+				/* 토글버튼 바활성화 됐을때 테두리 */
+				background-color: #cbd5e0;
+			}
+
+			.custom-control-label::before {
+				/* 토글버튼 비활성화 됐을때 배경,동그라미 버튼*/
+				background-color: #fff;
+				border: 1px solid #cbd5e0;
+			}
+
+			.hr-text:after {
+				content: " ";
+				margin-top: 14px;
+			}
+
+			.card {
+				background-color: #ffffff;
+				border: 0;
+				box-shadow: none !important;
+			}
+
+			.css-1uccc91-singleValue,
+			.css-1wa3eu0-placeholder,
+			.form-control {
+				color: #4a5568 !important;
+			}
+
+			.transLanguageBtn:hover,
+			.transLanguageBtn:active,
+			.transLanguageBtn:focus {
+				background-color: #e2e8f0 !important;
+			}
+
+			.apexcharts-radialbar-slice-0 {
+				/*장비 정보 그래프 색*/
+				stroke: #6aade0;
+			}
+
+			.device-card {
+				min-width: 340px;
+				max-width: 100%;
+				padding-right: 10px;
+				padding-left: 10px;
+			}
+
+			.device-area-charts-box {
+				background-color: white;
+				height: 410px;
+				border-radius: 0.3rem;
+				margin-bottom: 17px;
+			}
+
+			.apexcharts-datalabel-value {
+				font-size: 35px;
+				font-weight: bold;
+				fill: #4a5568;
+			}
+
+			.apexcharts-datalabel-label {
+				fill: #cbd5e0;
+				font-size: 17px;
+			}
+
+			.device-info-btn {
+				display: flex;
+				flex-direction: column;
+			}
+			.device-info-second-btn {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+			.title-mb {
+				margin-bottom: 20px;
+			}
+			#addrInput::placeholder {
+				color: #a0aec0;
+			}
+
+			.table-outline {
+				overflow: scroll;
+			}
+
+			/* .alert-calendar-hidden {
+				display: none;
+			} */
+
+			/* 표 테이블  */
+			.table th,
+			.table td {
+				border-top: 1px solid #e2e8f0 !important;
+				border-bottom: 1px solid #e2e8f0 !important;
+				border-color: #e2e8f0 !important;
+				vertical-align: middle !important;
+			}
+
+			.table thead th {
+				border-bottom: 1px solid #e2e8f0 !important;
+				color: #718096;
+				font-weight: 600 !important;
+			}
+
+			/* .table td {
+				color: #4a5568;
+			} */
+
+			.initial-loader-wrap {
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-family: -apple-system, "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+				font-size: 12px;
+				position: fixed;
+				z-index: 99999;
+				background-color: white;
+				transition: opacity 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+			}
+			.loaded .initial-loader-wrap {
+				opacity: 0;
+			}
+			.initial-loader {
+				min-width: 240px;
+				color: #212529;
+				line-height: 1.5;
+			}
+			.initial-loader__row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0.5rem;
+			}
+			.initial-loader__row + .initial-loader__row {
+				border-top: 1px solid #e2e2e2;
+			}
+			.initial-loader h1 {
+				margin: 0;
+				color: #0d7bff;
+				font-size: 30px;
+				font-weight: 600;
+				line-height: 1.2;
+			}
+			.initial-loader svg#loader-circle {
+				transform-origin: 50% 50%;
+				animation: spin 0.5s linear infinite;
+			}
+			.customDatePickerWidth,
+			.customDatePickerWidth > div.react-datepicker-wrapper,
+			.customDatePickerWidth
+				> div
+				> div.react-datepicker__input-container
+				.customDatePickerWidth
+				> div
+				> div.react-datepicker__input-container
+				input {
+				width: 100%;
+			}
+			.notification-container--bottom-center,
+			.notification-container--bottom-full,
+			.notification-container--bottom-left,
+			.notification-container--bottom-right,
+			.notification-container--center,
+			.notification-container--top-center,
+			.notification-container--top-full,
+			.notification-container--top-left,
+			.notification-container--top-right {
+				min-width: 325px;
+				position: absolute;
+				pointer-events: all;
+			}
+			.notification-container--bottom-center,
+			.notification-container--center,
+			.notification-container--top-center {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				left: calc(50% - 175px);
+				max-width: 350px;
+			}
+			.notification-container--center {
+				top: 20px;
+				height: 100%;
+				pointer-events: none;
+			}
+			.notification-container--bottom-full,
+			.notification-container--top-full {
+				width: 100%;
+				min-width: 100%;
+			}
+			.notification-container--bottom-full {
+				bottom: 0;
+			}
+			.flex-center {
+				min-width: 325px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				pointer-events: all;
+			}
+			.notification-container--top-center {
+				top: 20px;
+			}
+			.notification-container--bottom-center {
+				bottom: 20px;
+			}
+			.notification-container--top-left {
+				left: 20px;
+				top: 20px;
+			}
+			.notification-container--top-right {
+				right: 20px;
+				top: 20px;
+			}
+			.notification-container--bottom-left {
+				left: 20px;
+				bottom: 20px;
+			}
+			.notification-container--bottom-right {
+				bottom: 20px;
+				right: 20px;
+			}
+			.notification-container--mobile-bottom,
+			.notification-container--mobile-top {
+				pointer-events: all;
+				position: absolute;
+			}
+			.notification-container--mobile-top {
+				right: 20px;
+				left: 20px;
+				top: 20px;
+			}
+			.notification-container--mobile-bottom {
+				right: 20px;
+				left: 20px;
+				bottom: 20px;
+				margin-bottom: -15px;
+			}
+			.notification__item--default {
+				background-color: #007bff;
+				border-left: 8px solid #0562c7;
+			}
+			.notification__item--default .notification__timer {
+				background-color: #007bff;
+			}
+			.notification__item--default .notification__timer-filler {
+				background-color: #fff;
+			}
+			.notification__item--default .notification__close {
+				background-color: #007bff;
+			}
+			.notification__item--success {
+				background-color: #28a745;
+				border-left: 8px solid #1f8838;
+			}
+			.notification__item--success .notification__timer {
+				background-color: #28a745;
+			}
+			.notification__item--success .notification__timer-filler {
+				background-color: #fff;
+			}
+			.notification__item--success .notification__close {
+				background-color: #28a745;
+			}
+			.notification__item--danger {
+				background-color: #dc3545;
+				border-left: 8px solid #bd1120;
+			}
+			.notification__item--danger .notification__timer {
+				background-color: #dc3545;
+			}
+			.notification__item--danger .notification__timer-filler {
+				background-color: #fff;
+			}
+			.notification__item--danger .notification__close {
+				background-color: #dc3545;
+			}
+			.notification__item--info {
+				background-color: #17a2b8;
+				border-left: 8px solid #138b9e;
+			}
+			.notification__item--info .notification__timer {
+				background-color: #17a2b8;
+			}
+			.notification__item--info .notification__timer-filler {
+				background-color: #fff;
+			}
+			.notification__item--info .notification__close {
+				background-color: #17a2b8;
+			}
+			.notification__item--warning {
+				background-color: #eab000;
+				border-left: 8px solid #ce9c09;
+			}
+			.notification__item--warning .notification__timer {
+				background-color: #eab000;
+			}
+			.notification__item--warning .notification__timer-filler {
+				background-color: #fff;
+			}
+			.notification__item--warning .notification__close {
+				background-color: #eab000;
+			}
+			.notification__item--awesome {
+				background-color: #685dc3;
+				border-left: 8px solid #4c3fb1;
+			}
+			.notification__item--awesome .notification__timer {
+				background-color: #685dc3;
+			}
+			.notification__item--awesome .notification__timer-filler {
+				background-color: #fff;
+			}
+			.notification__item--awesome .notification__close {
+				background-color: #685dc3;
+			}
+
+			@keyframes timer {
+				0% {
+					width: 100%;
+				}
+				to {
+					width: 0;
+				}
+			}
+			.notifications-component {
+				position: fixed;
+				z-index: 9000;
+				pointer-events: none;
+				width: 100%;
+				height: 100%;
+			}
+			.notification__item {
+				display: flex;
+				position: relative;
+				border-radius: 3px;
+				margin-bottom: 15px;
+				box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+				cursor: pointer;
+			}
+			.notification-container--bottom-full .notification__item,
+			.notification-container--top-full .notification__item {
+				margin-bottom: 0;
+				border-radius: 0;
+			}
+			.notification__timer {
+				width: 100%;
+				margin-top: 10px;
+			}
+			.notification__timer,
+			.notification__timer-filler {
+				height: 3px;
+				border-radius: 5px;
+			}
+			.notification__title {
+				color: #fff;
+				font-weight: 700;
+				font-size: 14px;
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+			.notification__message {
+				color: #fff;
+				max-width: calc(100% - 15px);
+				font-size: 14px;
+				line-height: 150%;
+				word-wrap: break-word;
+				margin-bottom: 0;
+				margin-top: 0;
+			}
+			.notification__content {
+				padding: 8px 15px;
+				display: inline-block;
+				width: 100%;
+			}
+			.notification__close {
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+				display: inline-block;
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
+			.notification__close:after {
+				content: "\D7";
+				position: absolute;
+				transform: translate(-50%, -50%);
+				color: #fff;
+				font-size: 12px;
+				left: 50%;
+				top: 50%;
+			}
+			.notification-container--mobile-bottom .notification,
+			.notification-container--mobile-bottom .notification__item,
+			.notification-container--mobile-top .notification,
+			.notification-container--mobile-top .notification__item {
+				max-width: 100%;
+				width: 100%;
+			}
+			.notification-container--bottom-right .notification,
+			.notification-container--top-right .notification {
+				margin-left: auto;
+			}
+			.notification-container--bottom-left .notification,
+			.notification-container--top-left .notification {
+				margin-right: auto;
+			}
+			.notification-container--mobile-bottom .notification,
+			.notification-container--mobile-top .notification {
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.progress-bar-vertical {
+				width: 40px;
+				min-height: 104px;
+				display: flex;
+				align-items: flex-end;
+				/* margin-right: 10px; */
+				float: right;
+			}
+
+			.progress-bar-vertical .progress-bar {
+				width: 100%;
+				height: 0;
+				-webkit-transition: height 0.6s ease;
+				-o-transition: height 0.6s ease;
+				transition: height 0.6s ease;
+			}
+
+			.Resizer {
+				background: #000;
+				opacity: 0.2;
+				z-index: 100;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				-moz-background-clip: padding;
+				-webkit-background-clip: padding;
+				background-clip: padding-box;
+			}
+
+			.Resizer:hover {
+				-webkit-transition: all 2s ease;
+				transition: all 2s ease;
+			}
+
+			.Resizer.horizontal {
+				height: 11px;
+				margin: -5px 0;
+				border-top: 5px solid rgba(255, 255, 255, 0);
+				border-bottom: 5px solid rgba(255, 255, 255, 0);
+				cursor: row-resize;
+				width: 100%;
+			}
+
+			.Resizer.horizontal:hover {
+				border-top: 5px solid rgba(0, 0, 0, 0.5);
+				border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+			}
+
+			.Resizer.vertical {
+				width: 3px;
+				height: 90vh;
+				margin: 0 -5px;
+				/* border-left: 5px solid rgba(255, 255, 255, 0);
+			    border-right: 5px solid rgba(255, 255, 255, 0); */
+				border-left: 1px solid white;
+				border-right: 1px solid white;
+				cursor: col-resize;
+			}
+
+			.Resizer.vertical:hover {
+				/* border-left: 5px solid rgba(0, 0, 0, 0.5);
+			    border-right: 5px solid rgba(0, 0, 0, 0.5); */
+				border-left: 5px solid white;
+				border-right: 5px solid white;
+			}
+			.Resizer.disabled {
+				cursor: not-allowed;
+			}
+			.Resizer.disabled:hover {
+				border-color: transparent;
+			}
+
+			.bg-boxheader {
+				background-color: white !important;
+			}
+
+			.text-ellipsis {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.border-top,
+			.border-left {
+				border-color: #868e96 !important;
+			}
+
+			.css-yk16xz-control {
+				border: 1px solid #e2e8f0 !important;
+				color: #4a5568 !important;
+			}
+			.recharts-legend-item {
+				/*개별장비 그래프 원소기호 텍스트*/
+				font-weight: 600;
+			}
+
+			.recharts-cartesian-axis-line {
+				/*그래프 실선 (왼쪽/아래)*/
+				stroke: #e2e8f0;
+			}
+
+			.recharts-cartesian-axis-tick-line {
+				/*가장자리 꼭지점*/
+				stroke: #fff;
+			}
+
+			tspan {
+				stroke: #a0aec0;
+				font-weight: 100;
+			}
+
+			.card-body2 {
+				/*장비 데이터 카드*/
+				padding: 1rem;
+			}
+
+			/* custom scrollbar */
+			::-webkit-scrollbar {
+				width: 20px;
+			}
+
+			::-webkit-scrollbar-track {
+				background-color: transparent;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background-color: #5e6163;
+				border-radius: 20px;
+				border: 6px solid transparent;
+				background-clip: content-box;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background-color: #a8bbbf;
+			}
+
+			/* @media screen and (max-width: 617px) {
+				.alert-calendar-hidden {
+					display: inline-flex;
+					padding: 8px 4px 0px;
+				}
+			} */
+			@media screen and (max-width: 370px) {
+				.device-card {
+					min-width: 270px;
+				}
+				.device-area-charts-box {
+					background-color: white;
+					height: 380px;
+					border-radius: 0.3rem;
+				}
+				.apexcharts-title-text {
+					display: inline-block;
+					padding-bottom: 10px;
+				}
+				.apexcharts-datalabel-value {
+					font-size: 28px;
+					font-weight: bold;
+				}
+
+				.apexcharts-datalabel-label {
+					font-size: 16px;
+				}
+			}
+			@media screen and (max-width: 280px) {
+				.device-card {
+					min-width: 250px;
+				}
+				.device-area-charts-box {
+					height: 370px;
+				}
+			}
+		</style>
+		<style>
+			/* 커스텀 오버레이 */
+			.addButton:link {
+				color: #008000;
+			}
+			.wrap {
+				position: absolute;
+				left: 0;
+				bottom: 40px;
+				width: 170px;
+				height: 100px;
+				margin-left: -50px;
+				margin-bottom: -95px;
+				text-align: left;
+				overflow: hidden;
+				font-size: 12px;
+				font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+				line-height: 1.5;
+				color: #fff;
+				/* background: #3f4651; */
+			}
+			.wrap * {
+				padding: 6px;
+				margin: 0;
+			}
+			.wrap .body {
+				width: 170px;
+				height: 100px;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			.wrap .info {
+				color: #008000;
+				font-size: 15px;
+			}
+		</style>
+		<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5yae8jeels"></script>
+		<script
+			type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1413bd062a25a4a788c9699009392cac&libraries=services"
+		></script>
+	</head>
+	<body>
+		<!-- START Loader -->
+		<div class="initial-loader-wrap">
+			<div class="initial-loader">
+				<div class="initial-loader__row">
+					<!-- <svg
+          version="1.1"
+          viewBox="0 0 99 20"
+          width="99px"
+          height="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+            <g fill="#1EB7FF">
+                <path d="m5.5 20.25c-2.525 0-4.6-1.45-4.6-4.1v-0.05c0-2.925 2.225-4.275 5.4-4.275 1.35 0 2.325 0.225 3.275 0.55v-0.225c0-1.575-0.975-2.45-2.875-2.45-1.05 0-1.9 0.15-2.625 0.375-0.225 0.075-0.375 0.1-0.55 0.1-0.875 0-1.575-0.675-1.575-1.55 0-0.675 0.425-1.25 1.025-1.475 1.2-0.45 2.5-0.7 4.275-0.7 2.075 0 3.575 0.55 4.525 1.5 1 1 1.45 2.475 1.45 4.275v6.1c0 1.025-0.825 1.825-1.85 1.825-1.1 0-1.825-0.775-1.825-1.575v-0.025c-0.925 1.025-2.2 1.7-4.05 1.7zm1.15-2.625c1.775 0 2.975-0.975 2.975-2.35v-0.675c-0.65-0.3-1.5-0.5-2.425-0.5-1.625 0-2.625 0.65-2.625 1.85v0.05c0 1.025 0.85 1.625 2.075 1.625zm8.8741-14.175v-0.05c0-1.1 0.925-1.775 2.125-1.775s2.125 0.675 2.125 1.775v0.05c0 1.1-0.925 1.8-2.125 1.8s-2.125-0.7-2.125-1.8zm0.225 14.8v-9.9c0-1.05 0.85-1.9 1.9-1.9s1.9 0.85 1.9 1.9v9.9c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9zm6.4491 0v-9.9c0-1.05 0.85-1.9 1.9-1.9s1.9 0.85 1.9 1.9v0.6c0.55-1.3 1.45-2.5 2.575-2.5 1.175 0 1.85 0.775 1.85 1.85 0 1-0.65 1.6-1.425 1.775-1.925 0.45-3 1.925-3 4.625v3.55c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9zm10.174 0v-8.4h-0.15c-0.875 0-1.575-0.675-1.575-1.55s0.7-1.575 1.575-1.575h0.15v-0.85c0-1.475 0.375-2.55 1.075-3.25s1.725-1.05 3.075-1.05c0.6 0 1.125 0.025 1.55 0.1 0.65 0.1 1.3 0.675 1.3 1.525s-0.7 1.575-1.55 1.575h-0.325c-0.875 0-1.375 0.45-1.375 1.45v0.525h1.65c0.875 0 1.575 0.675 1.575 1.55s-0.7 1.55-1.575 1.55h-1.6v8.4c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9zm7.9741 0v-9.9c0-1.05 0.85-1.9 1.9-1.9s1.9 0.85 1.9 1.9v0.6c0.55-1.3 1.45-2.5 2.575-2.5 1.175 0 1.85 0.775 1.85 1.85 0 1-0.65 1.6-1.425 1.775-1.925 0.45-3 1.925-3 4.625v3.55c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9zm12.699 2c-2.525 0-4.6-1.45-4.6-4.1v-0.05c0-2.925 2.225-4.275 5.4-4.275 1.35 0 2.325 0.225 3.275 0.55v-0.225c0-1.575-0.975-2.45-2.875-2.45-1.05 0-1.9 0.15-2.625 0.375-0.225 0.075-0.375 0.1-0.55 0.1-0.875 0-1.575-0.675-1.575-1.55 0-0.675 0.425-1.25 1.025-1.475 1.2-0.45 2.5-0.7 4.275-0.7 2.075 0 3.575 0.55 4.525 1.5 1 1 1.45 2.475 1.45 4.275v6.1c0 1.025-0.825 1.825-1.85 1.825-1.1 0-1.825-0.775-1.825-1.575v-0.025c-0.925 1.025-2.2 1.7-4.05 1.7zm1.15-2.625c1.775 0 2.975-0.975 2.975-2.35v-0.675c-0.65-0.3-1.5-0.5-2.425-0.5-1.625 0-2.625 0.65-2.625 1.85v0.05c0 1.025 0.85 1.625 2.075 1.625zm8.9241 0.625v-9.9c0-1.05 0.85-1.9 1.9-1.9s1.9 0.85 1.9 1.9v0.15c0.875-1.125 2.025-2.15 3.95-2.15 1.75 0 3.075 0.775 3.775 2.125 1.175-1.375 2.575-2.125 4.4-2.125 2.825 0 4.525 1.7 4.525 4.925v6.975c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9v-5.725c0-1.8-0.8-2.725-2.225-2.725s-2.3 0.925-2.3 2.725v5.725c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9v-5.725c0-1.8-0.8-2.725-2.225-2.725s-2.3 0.925-2.3 2.725v5.725c0 1.05-0.85 1.9-1.9 1.9s-1.9-0.85-1.9-1.9zm25.899-6h5.725c-0.225-1.7-1.225-2.85-2.825-2.85-1.575 0-2.6 1.125-2.9 2.85zm7.925 6.425c-1.175 1-2.7 1.625-4.65 1.625-4.025 0-7-2.825-7-6.925v-0.05c0-3.825 2.725-6.975 6.625-6.975 4.475 0 6.45 3.675 6.45 6.45 0 1.1-0.775 1.825-1.775 1.825h-7.525c0.375 1.725 1.575 2.625 3.275 2.625 1.05 0 1.925-0.325 2.7-0.9 0.275-0.2 0.525-0.3 0.925-0.3 0.85 0 1.475 0.65 1.475 1.5 0 0.5-0.225 0.875-0.5 1.125z"/>
+            </g>
+        </svg> -->
+
+					<svg
+						version="1.1"
+						id="loader-circle"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+						x="0px"
+						y="0px"
+						width="30px"
+						height="30px"
+						viewBox="0 0 40 40"
+						enable-background="new 0 0 40 40"
+						xml:space="preserve"
+					>
+						<g>
+							<path
+								fill="#e7e7e7"
+								d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"
+							/>
+							<path
+								fill="#1EB7FF"
+								d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<div class="initial-loader__row">Please Wait. Loading...</div>
+			</div>
+		</div>
+
+		<script>
+			(function () {
+				var bodyElement = document.querySelector("body");
+				bodyElement.classList.add("loading");
+
+				document.addEventListener("readystatechange", function () {
+					if (document.readyState === "complete") {
+						var bodyElement = document.querySelector("body");
+						var loaderElement = document.querySelector(".initial-loader-wrap");
+						bodyElement.classList.add("loaded");
+						setTimeout(function () {
+							bodyElement.removeChild(loaderElement);
+							bodyElement.classList.remove("loading", "loaded");
+						}, 200);
+					}
+				});
+			})();
+			// //브라우저 종료시 로컬스토리지 삭제
+			//  window.addEventListener('unload',function() {
+			// 	localStorage.clear();
+			//  });
+		</script>
+		<!-- END Loader -->
+
+		<div id="root"><%= config.innerHtml || '' %></div>
+
+		<% for (var chunk in config.files.chunks) { %>
+		<script src="<%= config.files.chunks[chunk].entry %>" defer></script>
+		<% } %> <% if (config.options.devServer) { %>
+		<script src="<%= config.options.devServer%>/webpack-dev-server.js"></script>
+		<% } %>
+	</body>
+</html>
